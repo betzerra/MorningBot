@@ -7,5 +7,12 @@
 
 import Foundation
 
-print("Hello, World!")
+do {
+    let config = try Config.load()
+    let processor = Processor(config: config)
+    processor.run()
+} catch {
+    print(error.localizedDescription)
+}
 
+dispatchMain()

@@ -1,0 +1,12 @@
+//
+//  Config.swift
+//  MorningBot
+//
+//  Created by Ezequiel Becerra on 02/10/2022.
+//
+
+import Foundation
+
+struct Config: Codable {
+    let script: [ScriptConfig]
+}
