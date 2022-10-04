@@ -15,8 +15,7 @@ class MorningBot {
     }
 
     func run() {
-        let steps = StepFactory.steps(from: config.script)
-        steps.forEach { step in
+        config.steps.forEach { step in
             Task.init {
                 do {
                     try await print(step.message())

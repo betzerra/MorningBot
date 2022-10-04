@@ -10,14 +10,13 @@
 		675A54FF28EBB50500BD6EA4 /* Clarinete in Frameworks */ = {isa = PBXBuildFile; productRef = 675A54FE28EBB50500BD6EA4 /* Clarinete */; };
 		675A550328EBB93600BD6EA4 /* ScriptStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A550228EBB93600BD6EA4 /* ScriptStep.swift */; };
 		675A550528EBB95E00BD6EA4 /* ClarineteStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A550428EBB95E00BD6EA4 /* ClarineteStep.swift */; };
-		675A550728EBB9E700BD6EA4 /* StepFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A550628EBB9E700BD6EA4 /* StepFactory.swift */; };
 		67D3179C28EA7BA400A55042 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D3179B28EA7BA400A55042 /* main.swift */; };
 		67D317A428EA7C4F00A55042 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 67D317A328EA7C4F00A55042 /* Yams */; };
 		67D317A728EA7CC200A55042 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D317A628EA7CC200A55042 /* Config.swift */; };
 		67D317A928EA7D2200A55042 /* ScriptConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D317A828EA7D2200A55042 /* ScriptConfig.swift */; };
 		67D317AC28EA7E7200A55042 /* Config+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D317AB28EA7E7200A55042 /* Config+Load.swift */; };
 		67D317B428EA83D000A55042 /* config.yml in CopyFiles */ = {isa = PBXBuildFile; fileRef = 67D317AF28EA806E00A55042 /* config.yml */; };
-		67D317B628EA865A00A55042 /* Processor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D317B528EA865A00A55042 /* Processor.swift */; };
+		67D317B628EA865A00A55042 /* MorningBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D317B528EA865A00A55042 /* MorningBot.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,14 +35,13 @@
 /* Begin PBXFileReference section */
 		675A550228EBB93600BD6EA4 /* ScriptStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptStep.swift; sourceTree = "<group>"; };
 		675A550428EBB95E00BD6EA4 /* ClarineteStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClarineteStep.swift; sourceTree = "<group>"; };
-		675A550628EBB9E700BD6EA4 /* StepFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepFactory.swift; sourceTree = "<group>"; };
 		67D3179828EA7BA400A55042 /* MorningBot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MorningBot; sourceTree = BUILT_PRODUCTS_DIR; };
 		67D3179B28EA7BA400A55042 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		67D317A628EA7CC200A55042 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		67D317A828EA7D2200A55042 /* ScriptConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptConfig.swift; sourceTree = "<group>"; };
 		67D317AB28EA7E7200A55042 /* Config+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Load.swift"; sourceTree = "<group>"; };
 		67D317AF28EA806E00A55042 /* config.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = config.yml; sourceTree = "<group>"; };
-		67D317B528EA865A00A55042 /* Processor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Processor.swift; sourceTree = "<group>"; };
+		67D317B528EA865A00A55042 /* MorningBot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningBot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +60,6 @@
 		675A550828EBBA0300BD6EA4 /* ScriptStep */ = {
 			isa = PBXGroup;
 			children = (
-				675A550628EBB9E700BD6EA4 /* StepFactory.swift */,
 				675A550228EBB93600BD6EA4 /* ScriptStep.swift */,
 				675A550428EBB95E00BD6EA4 /* ClarineteStep.swift */,
 			);
@@ -90,7 +87,7 @@
 			children = (
 				67D317AF28EA806E00A55042 /* config.yml */,
 				67D3179B28EA7BA400A55042 /* main.swift */,
-				67D317B528EA865A00A55042 /* Processor.swift */,
+				67D317B528EA865A00A55042 /* MorningBot.swift */,
 				675A550828EBBA0300BD6EA4 /* ScriptStep */,
 				67D317AD28EA7E7600A55042 /* Extensions */,
 				67D317AA28EA7DC500A55042 /* Models */,
@@ -181,10 +178,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				675A550728EBB9E700BD6EA4 /* StepFactory.swift in Sources */,
 				67D3179C28EA7BA400A55042 /* main.swift in Sources */,
 				675A550528EBB95E00BD6EA4 /* ClarineteStep.swift in Sources */,
-				67D317B628EA865A00A55042 /* Processor.swift in Sources */,
+				67D317B628EA865A00A55042 /* MorningBot.swift in Sources */,
 				675A550328EBB93600BD6EA4 /* ScriptStep.swift in Sources */,
 				67D317AC28EA7E7200A55042 /* Config+Load.swift in Sources */,
 				67D317A928EA7D2200A55042 /* ScriptConfig.swift in Sources */,

@@ -12,7 +12,13 @@ enum ClarineteStepError: Error {
     case wrongHost
 }
 
-class ClarineteStep: ScriptStep {
+class ClarineteStep: ScriptStep, Codable {
+    let limit: Int
+
+    init(limit: Int) {
+        self.limit = limit
+    }
+
     func message() async throws -> String {
         guard let url = URL(string: "https://clarinete.seppo.com.ar") else {
             throw ClarineteStepError.wrongHost
@@ -23,7 +29,7 @@ class ClarineteStep: ScriptStep {
         let client = try Clarinete(configuration: configuration)
         var message: String = ""
 
-        try await client.getTrends().forEach { trend in
+        try await client.getTrends().prefix(limit).forEach { trend in
             guard let summary = trend.summary else {
                 return
             }

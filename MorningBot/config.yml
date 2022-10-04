@@ -1,2 +1,3 @@
 script:
   - type: clarinete_news
+    limit: 5

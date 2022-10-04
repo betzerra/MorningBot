@@ -7,6 +7,15 @@
 
 import Foundation
 
-struct Config: Codable {
-    let script: [ScriptConfig]
+struct Config: Decodable {
+    private let script: [ScriptConfig]
+
+    var steps: [ScriptStep] {
+        script.map { scriptConfig in
+            switch scriptConfig.value {
+            case .clarineteNews(let value):
+                return value
+            }
+        }
+    }
 }

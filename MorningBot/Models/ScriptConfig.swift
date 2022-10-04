@@ -12,6 +12,28 @@ enum ScriptType: String, Codable {
     case ClarineteNews = "clarinete_news"
 }
 
-struct ScriptConfig: Codable {
-    let type: ScriptType
+struct ScriptConfig: Decodable {
+    let value: Value
+
+    enum Value: Decodable {
+        case clarineteNews(ClarineteStep)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case limit
+        case type
+        case value
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        let type = try container.decode(ScriptType.self, forKey: .type)
+
+        switch type {
+        case .ClarineteNews:
+            let limit = try container.decode(Int.self, forKey: .limit)
+            value = .clarineteNews(ClarineteStep(limit: limit))
+        }
+    }
 }
