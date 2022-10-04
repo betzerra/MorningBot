@@ -9,7 +9,7 @@ import Foundation
 import Clarinete
 
 enum ScriptType: String, Codable {
-    case ClarineteNews = "clarinete_news"
+    case clarineteNews = "clarinete_news"
 }
 
 struct ScriptConfig: Decodable {
@@ -31,7 +31,7 @@ struct ScriptConfig: Decodable {
         let type = try container.decode(ScriptType.self, forKey: .type)
 
         switch type {
-        case .ClarineteNews:
+        case .clarineteNews:
             let limit = try container.decode(Int.self, forKey: .limit)
             value = .clarineteNews(ClarineteStep(limit: limit))
         }
