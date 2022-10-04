@@ -5,7 +5,6 @@
 //  Created by Ezequiel Becerra on 02/10/2022.
 //
 
-import Clarinete
 import Foundation
 
 class Processor {
@@ -17,28 +16,13 @@ class Processor {
 
     func run() {
         config.script.forEach { script in
-            switch script.type {
-            case .ClarineteNews:
-                fetchNews()
-            }
-        }
-    }
-
-    private func fetchNews() {
-        let configuration = Configuration(host: "https://clarinete.seppo.com.ar")
-
-        do {
-            let clarinete = try Clarinete(configuration: configuration)
-            let something = clarinete.getTrends { result in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let trends):
-                    print(trends)
+            Task.init {
+                do {
+                    try await print(script.message())
+                } catch {
+                    print(error.localizedDescription)
                 }
             }
-        } catch {
-            print(error.localizedDescription)
         }
     }
 }
