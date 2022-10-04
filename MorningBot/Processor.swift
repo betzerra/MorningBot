@@ -1,5 +1,5 @@
 //
-//  Processor.swift
+//  MorningBot.swift
 //  MorningBot
 //
 //  Created by Ezequiel Becerra on 02/10/2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Processor {
+class MorningBot {
     let config: Config
 
     init(config: Config) {
@@ -15,10 +15,11 @@ class Processor {
     }
 
     func run() {
-        config.script.forEach { script in
+        let steps = StepFactory.steps(from: config.script)
+        steps.forEach { step in
             Task.init {
                 do {
-                    try await print(script.message())
+                    try await print(step.message())
                 } catch {
                     print(error.localizedDescription)
                 }

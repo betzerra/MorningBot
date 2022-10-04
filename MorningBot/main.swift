@@ -9,7 +9,7 @@ import Foundation
 
 do {
     let config = try Config.load()
-    let processor = Processor(config: config)
+    let processor = MorningBot(config: config)
     processor.run()
 } catch {
     print(error.localizedDescription)
