@@ -11,11 +11,10 @@
 		675A550328EBB93600BD6EA4 /* ScriptStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A550228EBB93600BD6EA4 /* ScriptStep.swift */; };
 		675A550528EBB95E00BD6EA4 /* ClarineteStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A550428EBB95E00BD6EA4 /* ClarineteStep.swift */; };
 		67D3179C28EA7BA400A55042 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D3179B28EA7BA400A55042 /* main.swift */; };
-		67D317A428EA7C4F00A55042 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 67D317A328EA7C4F00A55042 /* Yams */; };
 		67D317A728EA7CC200A55042 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D317A628EA7CC200A55042 /* Config.swift */; };
 		67D317A928EA7D2200A55042 /* ScriptConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D317A828EA7D2200A55042 /* ScriptConfig.swift */; };
 		67D317AC28EA7E7200A55042 /* Config+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D317AB28EA7E7200A55042 /* Config+Load.swift */; };
-		67D317B428EA83D000A55042 /* config.yml in CopyFiles */ = {isa = PBXBuildFile; fileRef = 67D317AF28EA806E00A55042 /* config.yml */; };
+		67D317B428EA83D000A55042 /* config.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 67D317AF28EA806E00A55042 /* config.json */; };
 		67D317B628EA865A00A55042 /* MorningBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D317B528EA865A00A55042 /* MorningBot.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +25,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				67D317B428EA83D000A55042 /* config.yml in CopyFiles */,
+				67D317B428EA83D000A55042 /* config.json in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,7 +39,7 @@
 		67D317A628EA7CC200A55042 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		67D317A828EA7D2200A55042 /* ScriptConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptConfig.swift; sourceTree = "<group>"; };
 		67D317AB28EA7E7200A55042 /* Config+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Load.swift"; sourceTree = "<group>"; };
-		67D317AF28EA806E00A55042 /* config.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = config.yml; sourceTree = "<group>"; };
+		67D317AF28EA806E00A55042 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		67D317B528EA865A00A55042 /* MorningBot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningBot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,7 +49,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				675A54FF28EBB50500BD6EA4 /* Clarinete in Frameworks */,
-				67D317A428EA7C4F00A55042 /* Yams in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,7 +83,7 @@
 		67D3179A28EA7BA400A55042 /* MorningBot */ = {
 			isa = PBXGroup;
 			children = (
-				67D317AF28EA806E00A55042 /* config.yml */,
+				67D317AF28EA806E00A55042 /* config.json */,
 				67D3179B28EA7BA400A55042 /* main.swift */,
 				67D317B528EA865A00A55042 /* MorningBot.swift */,
 				675A550828EBBA0300BD6EA4 /* ScriptStep */,
@@ -129,7 +127,6 @@
 			);
 			name = MorningBot;
 			packageProductDependencies = (
-				67D317A328EA7C4F00A55042 /* Yams */,
 				675A54FE28EBB50500BD6EA4 /* Clarinete */,
 			);
 			productName = MorningBot;
@@ -161,7 +158,6 @@
 			);
 			mainGroup = 67D3178F28EA7BA400A55042;
 			packageReferences = (
-				67D317A228EA7C4F00A55042 /* XCRemoteSwiftPackageReference "Yams" */,
 				675A54FD28EBB50500BD6EA4 /* XCRemoteSwiftPackageReference "Clarinete" */,
 			);
 			productRefGroup = 67D3179928EA7BA400A55042 /* Products */;
@@ -358,14 +354,6 @@
 				revision = 2f226674b461a70ebb21307cd388986ffc985856;
 			};
 		};
-		67D317A228EA7C4F00A55042 /* XCRemoteSwiftPackageReference "Yams" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jpsim/Yams.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -373,11 +361,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 675A54FD28EBB50500BD6EA4 /* XCRemoteSwiftPackageReference "Clarinete" */;
 			productName = Clarinete;
-		};
-		67D317A328EA7C4F00A55042 /* Yams */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 67D317A228EA7C4F00A55042 /* XCRemoteSwiftPackageReference "Yams" */;
-			productName = Yams;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
