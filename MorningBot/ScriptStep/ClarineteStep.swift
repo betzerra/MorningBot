@@ -12,7 +12,7 @@ enum ClarineteStepError: Error {
     case wrongHost
 }
 
-class ClarineteStep: ScriptStep, Codable {
+class ClarineteStep: ScriptStep {
     let limit: Int
 
     init(limit: Int) {
@@ -34,7 +34,7 @@ class ClarineteStep: ScriptStep, Codable {
                 return
             }
 
-            message += "- *\(trend.name):* \(summary.text)\n"
+            message += "- *\(trend.name):* \(summary.text) [link](\(summary.url)) \n\n"
         }
         return message
     }
