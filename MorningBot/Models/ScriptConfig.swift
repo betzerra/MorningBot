@@ -15,14 +15,13 @@ enum ScriptType: String, Codable {
 struct ScriptConfig: Decodable {
     let value: Value
 
-    enum Value: Decodable {
+    enum Value {
         case clarineteNews(ClarineteStep)
     }
 
     enum CodingKeys: String, CodingKey {
         case limit
         case type
-        case value
     }
 
     init(from decoder: Decoder) throws {

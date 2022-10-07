@@ -15,10 +15,16 @@ class MorningBot {
     }
 
     func run() {
-        config.steps.forEach { step in
+        let senders = config.generateSenders()
+
+        config.generateSteps().forEach { step in
             Task.init {
                 do {
-                    try await print(step.message())
+                    let message = try await step.message()
+
+                    senders.forEach { sender in
+                        sender.send(message: message)
+                    }
                 } catch {
                     print(error.localizedDescription)
                 }

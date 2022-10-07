@@ -10,6 +10,10 @@
 		675A54FF28EBB50500BD6EA4 /* Clarinete in Frameworks */ = {isa = PBXBuildFile; productRef = 675A54FE28EBB50500BD6EA4 /* Clarinete */; };
 		675A550328EBB93600BD6EA4 /* ScriptStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A550228EBB93600BD6EA4 /* ScriptStep.swift */; };
 		675A550528EBB95E00BD6EA4 /* ClarineteStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A550428EBB95E00BD6EA4 /* ClarineteStep.swift */; };
+		67BD2B9528EE58A900391CD2 /* TelegramSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BD2B9428EE58A900391CD2 /* TelegramSender.swift */; };
+		67BD2B9728EE58E100391CD2 /* SenderConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BD2B9628EE58E100391CD2 /* SenderConfig.swift */; };
+		67BD2B9928EE5A1800391CD2 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BD2B9828EE5A1800391CD2 /* Sender.swift */; };
+		67BD2B9D28EE5BCA00391CD2 /* TelegramBotSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 67BD2B9C28EE5BCA00391CD2 /* TelegramBotSDK */; };
 		67D3179C28EA7BA400A55042 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D3179B28EA7BA400A55042 /* main.swift */; };
 		67D317A728EA7CC200A55042 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D317A628EA7CC200A55042 /* Config.swift */; };
 		67D317A928EA7D2200A55042 /* ScriptConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D317A828EA7D2200A55042 /* ScriptConfig.swift */; };
@@ -34,6 +38,9 @@
 /* Begin PBXFileReference section */
 		675A550228EBB93600BD6EA4 /* ScriptStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptStep.swift; sourceTree = "<group>"; };
 		675A550428EBB95E00BD6EA4 /* ClarineteStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClarineteStep.swift; sourceTree = "<group>"; };
+		67BD2B9428EE58A900391CD2 /* TelegramSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelegramSender.swift; sourceTree = "<group>"; };
+		67BD2B9628EE58E100391CD2 /* SenderConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderConfig.swift; sourceTree = "<group>"; };
+		67BD2B9828EE5A1800391CD2 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		67D3179828EA7BA400A55042 /* MorningBot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MorningBot; sourceTree = BUILT_PRODUCTS_DIR; };
 		67D3179B28EA7BA400A55042 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		67D317A628EA7CC200A55042 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -48,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67BD2B9D28EE5BCA00391CD2 /* TelegramBotSDK in Frameworks */,
 				675A54FF28EBB50500BD6EA4 /* Clarinete in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +70,15 @@
 				675A550428EBB95E00BD6EA4 /* ClarineteStep.swift */,
 			);
 			path = ScriptStep;
+			sourceTree = "<group>";
+		};
+		67BD2B9A28EE5A3D00391CD2 /* Sender */ = {
+			isa = PBXGroup;
+			children = (
+				67BD2B9428EE58A900391CD2 /* TelegramSender.swift */,
+				67BD2B9828EE5A1800391CD2 /* Sender.swift */,
+			);
+			path = Sender;
 			sourceTree = "<group>";
 		};
 		67D3178F28EA7BA400A55042 = {
@@ -86,6 +103,7 @@
 				67D317AF28EA806E00A55042 /* config.json */,
 				67D3179B28EA7BA400A55042 /* main.swift */,
 				67D317B528EA865A00A55042 /* MorningBot.swift */,
+				67BD2B9A28EE5A3D00391CD2 /* Sender */,
 				675A550828EBBA0300BD6EA4 /* ScriptStep */,
 				67D317AD28EA7E7600A55042 /* Extensions */,
 				67D317AA28EA7DC500A55042 /* Models */,
@@ -97,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				67D317A628EA7CC200A55042 /* Config.swift */,
+				67BD2B9628EE58E100391CD2 /* SenderConfig.swift */,
 				67D317A828EA7D2200A55042 /* ScriptConfig.swift */,
 			);
 			path = Models;
@@ -128,6 +147,7 @@
 			name = MorningBot;
 			packageProductDependencies = (
 				675A54FE28EBB50500BD6EA4 /* Clarinete */,
+				67BD2B9C28EE5BCA00391CD2 /* TelegramBotSDK */,
 			);
 			productName = MorningBot;
 			productReference = 67D3179828EA7BA400A55042 /* MorningBot */;
@@ -159,6 +179,7 @@
 			mainGroup = 67D3178F28EA7BA400A55042;
 			packageReferences = (
 				675A54FD28EBB50500BD6EA4 /* XCRemoteSwiftPackageReference "Clarinete" */,
+				67BD2B9B28EE5BCA00391CD2 /* XCRemoteSwiftPackageReference "telegram-bot-swift" */,
 			);
 			productRefGroup = 67D3179928EA7BA400A55042 /* Products */;
 			projectDirPath = "";
@@ -175,12 +196,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				67D3179C28EA7BA400A55042 /* main.swift in Sources */,
+				67BD2B9528EE58A900391CD2 /* TelegramSender.swift in Sources */,
 				675A550528EBB95E00BD6EA4 /* ClarineteStep.swift in Sources */,
 				67D317B628EA865A00A55042 /* MorningBot.swift in Sources */,
+				67BD2B9928EE5A1800391CD2 /* Sender.swift in Sources */,
 				675A550328EBB93600BD6EA4 /* ScriptStep.swift in Sources */,
 				67D317AC28EA7E7200A55042 /* Config+Load.swift in Sources */,
 				67D317A928EA7D2200A55042 /* ScriptConfig.swift in Sources */,
 				67D317A728EA7CC200A55042 /* Config.swift in Sources */,
+				67BD2B9728EE58E100391CD2 /* SenderConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +378,14 @@
 				revision = 2f226674b461a70ebb21307cd388986ffc985856;
 			};
 		};
+		67BD2B9B28EE5BCA00391CD2 /* XCRemoteSwiftPackageReference "telegram-bot-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rapierorg/telegram-bot-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -361,6 +393,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 675A54FD28EBB50500BD6EA4 /* XCRemoteSwiftPackageReference "Clarinete" */;
 			productName = Clarinete;
+		};
+		67BD2B9C28EE5BCA00391CD2 /* TelegramBotSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 67BD2B9B28EE5BCA00391CD2 /* XCRemoteSwiftPackageReference "telegram-bot-swift" */;
+			productName = TelegramBotSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
