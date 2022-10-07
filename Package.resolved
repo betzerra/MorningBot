@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "clarinete",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:betzerra/Clarinete.git",
+      "state" : {
+        "revision" : "39c0d4a842f36e7d8228d922551dba3e04e11d8b",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "pluma",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:betzerra/Pluma.git",
+      "state" : {
+        "revision" : "9193be39fecc572e7e28101a277612b1e8e38c36",
+        "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "telegram-bot-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:rapierorg/telegram-bot-swift.git",
+      "state" : {
+        "revision" : "c03186fdbde69be648be33c57793a2d83c5a8256",
+        "version" : "2.1.2"
+      }
+    }
+  ],
+  "version" : 2
+}
