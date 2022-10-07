@@ -4,5 +4,12 @@
             "type": "clarinete_news",
             "limit": 5
         }
+    ],
+    "senders": [
+        {
+            "type": "telegram",
+            "token": "foo",
+            "chat_id": 1234
+        }
     ]
 }
