@@ -9,17 +9,17 @@ import Foundation
 import TelegramBotSDK
 
 class TelegramSender: Sender {
-    private let chatId: Int64
+    private let chatId: TelegramBotSDK.ChatId
     let bot: TelegramBot
 
-    init(token: String, chatId: Int64) {
+    init(token: String, chatId: TelegramBotSDK.ChatId) {
         self.chatId = chatId
         self.bot = TelegramBot(token: token)
     }
 
     func send(message: String) {
         bot.sendMessageSync(
-            chatId: .chat(chatId),
+            chatId: chatId,
             text: message,
             parseMode: .markdown,
             disableWebPagePreview: true

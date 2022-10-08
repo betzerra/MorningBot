@@ -6,9 +6,14 @@
 //
 
 import Foundation
+import TelegramBotSDK
 
 enum SenderType: String, Codable {
     case telegram
+}
+
+enum SenderConfigError: Error {
+    case missingKeys
 }
 
 struct SenderConfig: Decodable {
@@ -20,6 +25,7 @@ struct SenderConfig: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case chatId = "chat_id"
+        case channel
         case token
         case type
     }
@@ -32,8 +38,23 @@ struct SenderConfig: Decodable {
         switch type {
         case .telegram:
             let token = try container.decode(String.self, forKey: .token)
-            let chatId = try container.decode(Int64.self, forKey: .chatId)
+
+            guard let chatId = SenderConfig.chatId(from: container) else {
+                throw SenderConfigError.missingKeys
+            }
+
             value = .telegram(TelegramSender(token: token, chatId: chatId))
         }
+    }
+
+    private static func chatId(from container: KeyedDecodingContainer<SenderConfig.CodingKeys>) -> TelegramBotSDK.ChatId? {
+        if let chatId = try? container.decodeIfPresent(Int64.self, forKey: .chatId) {
+            return .chat(chatId)
+
+        } else if let channel = try? container.decodeIfPresent(String.self, forKey: .channel) {
+            return .channel(channel)
+        }
+
+        return nil
     }
 }
