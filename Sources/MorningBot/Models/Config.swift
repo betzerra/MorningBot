@@ -16,6 +16,9 @@ struct Config: Decodable {
             switch scriptConfig.value {
             case .clarineteNews(let value):
                 return value
+
+            case .dollar(let value):
+                return value
             }
         }
     }
