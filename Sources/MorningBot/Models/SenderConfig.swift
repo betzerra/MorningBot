@@ -16,12 +16,8 @@ enum SenderConfigError: Error {
     case missingKeys
 }
 
-struct SenderConfig: Decodable {
-    let value: Value
-
-    enum Value {
-        case telegram(TelegramSender)
-    }
+enum SenderConfig: Decodable {
+    case telegram(TelegramSender)
 
     enum CodingKeys: String, CodingKey {
         case chatId = "chat_id"
@@ -43,7 +39,14 @@ struct SenderConfig: Decodable {
                 throw SenderConfigError.missingKeys
             }
 
-            value = .telegram(TelegramSender(token: token, chatId: chatId))
+            self = .telegram(TelegramSender(token: token, chatId: chatId))
+        }
+    }
+
+    var sender: Sender {
+        switch self {
+        case .telegram(let value):
+            return value
         }
     }
 
