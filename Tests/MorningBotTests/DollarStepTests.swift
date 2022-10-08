@@ -29,6 +29,18 @@ final class DollarStepTests: XCTestCase {
         XCTAssertEqual(exchange.updated.timeIntervalSince1970, 1665183333.793)
     }
 
+    func testMessage() throws {
+        let step = try DollarStep()
+        let message = step.message(from: try dollarExchange())
+
+        let expectedMessage = """
+        *Dolar oficial:* $156.00 / $148.00 (spr: $8.00)
+        *Dolar blue:* $277.00 / $273.00 (spr: $4.00)
+        *Dif. blue / oficial:* ⬆️ 84.46%
+        """
+        XCTAssertEqual(message, expectedMessage)
+    }
+
     private func dollarExchange() throws -> DollarExchange {
         let exchangeJSON = """
         {
