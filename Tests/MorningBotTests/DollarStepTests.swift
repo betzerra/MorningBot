@@ -15,10 +15,10 @@ final class DollarStepTests: XCTestCase {
         let data = currencyJSON.data(using: .utf8)
         let currency = try! JSONDecoder().decode(Currency.self, from: data!)
 
-        XCTAssertEqual(currency.formattedAverage, "$152.00")
-        XCTAssertEqual(currency.formattedSell, "$156.00")
-        XCTAssertEqual(currency.formattedBuy, "$148.00")
-        XCTAssertEqual(currency.formattedSpread, "$8.00")
+        XCTAssertEqual(currency.average.decimal, "152.00")
+        XCTAssertEqual(currency.sell.decimal, "156.00")
+        XCTAssertEqual(currency.buy.decimal, "148.00")
+        XCTAssertEqual(currency.spread.decimal, "8.00")
     }
 
     func testExchangeParse() throws {
@@ -31,12 +31,20 @@ final class DollarStepTests: XCTestCase {
 
     func testMessage() throws {
         let step = try DollarStep(shouldNotify: false)
-        let message = step.message(from: try dollarExchange())
+        let message = step.message(
+            dollar: try dollarExchange(),
+            btc: try coinbaseExchange(),
+            eth: try coinbaseExchange()
+        )
 
         let expectedMessage = """
-        *Dolar oficial:* $156.00 / $148.00 (spr: $8.00)
-        *Dolar blue:* $277.00 / $273.00 (spr: $4.00)
+        *Dolar oficial:* 156.00 / 148.00 (spr: 8.00)
+        *Dolar blue:* 277.00 / 273.00 (spr: 4.00)
         *Dif. blue / oficial:* ⬆️ 84.46%
+
+        *Crypto*
+        *BTC-USD:* 19440.69
+        *ETH-USD:* 19440.69
         """
         XCTAssertEqual(message, expectedMessage)
     }
@@ -69,6 +77,22 @@ final class DollarStepTests: XCTestCase {
         """
 
         let data = exchangeJSON.data(using: .utf8)
-        return try DollarStep.decoder().decode(DollarExchange.self, from: data!)
+        return try DollarExchangeService.decoder().decode(DollarExchange.self, from: data!)
+    }
+
+    private func coinbaseExchange() throws -> CoinbaseExchange {
+        let btcJSON = """
+        {
+            "open": "19945.06",
+            "high": "20065.26",
+            "low": "19325",
+            "last": "19440.69",
+            "volume": "33278.52816374",
+            "volume_30day": "837561.11420341"
+        }
+        """
+
+        let data = btcJSON.data(using: .utf8)
+        return try JSONDecoder().decode(CoinbaseExchange.self, from: data!)
     }
 }
