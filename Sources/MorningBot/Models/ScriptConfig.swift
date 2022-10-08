@@ -10,6 +10,7 @@ import Clarinete
 
 enum ScriptType: String, Codable {
     case clarineteNews = "clarinete_news"
+    case dollar
 }
 
 struct ScriptConfig: Decodable {
@@ -17,6 +18,7 @@ struct ScriptConfig: Decodable {
 
     enum Value {
         case clarineteNews(ClarineteStep)
+        case dollar(DollarStep)
     }
 
     enum CodingKeys: String, CodingKey {
@@ -33,6 +35,9 @@ struct ScriptConfig: Decodable {
         case .clarineteNews:
             let limit = try container.decode(Int.self, forKey: .limit)
             value = .clarineteNews(ClarineteStep(limit: limit))
+
+        case .dollar:
+            value = .dollar(try DollarStep())
         }
     }
 }
