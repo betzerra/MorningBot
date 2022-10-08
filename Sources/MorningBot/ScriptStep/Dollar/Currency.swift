@@ -21,20 +21,4 @@ struct Currency: Codable, Equatable {
     var spread: Float {
         sell - buy
     }
-
-    var formattedAverage: String {
-        String(format: "$%.2f", average)
-    }
-
-    var formattedBuy: String {
-        String(format: "$%.2f", buy)
-    }
-
-    var formattedSell: String {
-        String(format: "$%.2f", sell)
-    }
-
-    var formattedSpread: String {
-        String(format: "$%.2f", spread)
-    }
 }

@@ -8,33 +8,37 @@
 import Foundation
 import Pluma
 
-enum DollarStepError: Error {
-    case wrongHost
-}
-
 class DollarStep: ScriptStep {
+    let coinbaseService: CoinbaseService
     let dollarExchangeService: DollarExchangeService
     let shouldNotify: Bool
 
     init(shouldNotify: Bool) throws {
-        guard let url = URL(string: "https://api.bluelytics.com.ar/v2") else {
-            throw DollarStepError.wrongHost
-        }
-
-        self.dollarExchangeService = DollarExchangeService(url: url)
+        self.coinbaseService = try CoinbaseService()
+        self.dollarExchangeService = try DollarExchangeService()
         self.shouldNotify = shouldNotify
     }
 
     func message() async throws -> String {
-        let exchange: DollarExchange = try await dollarExchangeService.fetchDollarExchange()
-        return message(from: exchange)
+        let dollar: DollarExchange = try await dollarExchangeService.fetchDollarExchange()
+        let btc: CoinbaseExchange = try await coinbaseService.fetch(coin: .btc)
+        let eth: CoinbaseExchange = try await coinbaseService.fetch(coin: .eth)
+        return message(dollar: dollar, btc: btc, eth: eth)
     }
 
-    func message(from exchange: DollarExchange) -> String {
+    func message(
+        dollar: DollarExchange,
+        btc: CoinbaseExchange,
+        eth: CoinbaseExchange
+    ) -> String {
         return """
-        *Dolar oficial:* \(exchange.official.formattedSell) / \(exchange.official.formattedBuy) (spr: \(exchange.official.formattedSpread))
-        *Dolar blue:* \(exchange.blue.formattedSell) / \(exchange.blue.formattedBuy) (spr: \(exchange.blue.formattedSpread))
-        *Dif. blue / oficial:* \(exchange.formattedSpread)
+        *Dolar oficial:* \(dollar.official.sell.decimal) / \(dollar.official.buy.decimal) (spr: \(dollar.official.spread.decimal))
+        *Dolar blue:* \(dollar.blue.sell.decimal) / \(dollar.blue.buy.decimal) (spr: \(dollar.blue.spread.decimal))
+        *Dif. blue / oficial:* \(dollar.formattedSpread)
+
+        *Crypto*
+        *BTC-USD:* \(btc.last)
+        *ETH-USD:* \(eth.last)
         """
     }
 }

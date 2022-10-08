@@ -8,12 +8,18 @@
 import Foundation
 import Pluma
 
+enum DollarExchangeServiceError: Error {
+    case wrongURL
+}
+
 class DollarExchangeService {
-    let url: URL
     let pluma: Pluma
 
-    init(url: URL) {
-        self.url = url
+    init() throws {
+        guard let url = URL(string: "https://api.bluelytics.com.ar/v2") else {
+            throw DollarExchangeServiceError.wrongURL
+        }
+
         self.pluma = Pluma(baseURL: url, decoder: DollarExchangeService.decoder())
     }
 
