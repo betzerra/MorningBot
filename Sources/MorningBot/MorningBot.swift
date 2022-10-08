@@ -34,7 +34,7 @@ public struct MorningBot {
                 let message = try await step.message()
 
                 senders.forEach { sender in
-                    sender.send(message: message)
+                    sender.send(message: message, notify: step.shouldNotify)
                 }
             } catch {
                 print(error.localizedDescription)

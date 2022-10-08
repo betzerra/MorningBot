@@ -23,6 +23,7 @@ struct ScriptConfig: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case limit
+        case notify
         case type
     }
 
@@ -30,14 +31,15 @@ struct ScriptConfig: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         let type = try container.decode(ScriptType.self, forKey: .type)
+        let notify = try container.decode(Bool.self, forKey: .notify)
 
         switch type {
         case .clarineteNews:
             let limit = try container.decode(Int.self, forKey: .limit)
-            value = .clarineteNews(ClarineteStep(limit: limit))
+            value = .clarineteNews(ClarineteStep(limit: limit, shouldNotify: notify))
 
         case .dollar:
-            value = .dollar(try DollarStep())
+            value = .dollar(try DollarStep(shouldNotify: notify))
         }
     }
 }

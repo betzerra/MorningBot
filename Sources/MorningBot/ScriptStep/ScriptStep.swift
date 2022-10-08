@@ -9,4 +9,6 @@ import Foundation
 
 protocol ScriptStep {
     func message() async throws -> String
+
+    var shouldNotify: Bool { get }
 }

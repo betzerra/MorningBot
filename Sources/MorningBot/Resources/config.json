@@ -1,11 +1,13 @@
 {
     "script": [
         {
-            "type": "dollar"
+            "type": "dollar",
+            "notify": true
         },
         {
             "type": "clarinete_news",
-            "limit": 5
+            "limit": 5,
+            "notify": false
         }
     ],
     "senders": [

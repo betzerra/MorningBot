@@ -14,9 +14,11 @@ enum ClarineteStepError: Error {
 
 class ClarineteStep: ScriptStep {
     let limit: Int
+    let shouldNotify: Bool
 
-    init(limit: Int) {
+    init(limit: Int, shouldNotify: Bool) {
         self.limit = limit
+        self.shouldNotify = shouldNotify
     }
 
     func message() async throws -> String {

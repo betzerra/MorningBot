@@ -30,7 +30,7 @@ final class DollarStepTests: XCTestCase {
     }
 
     func testMessage() throws {
-        let step = try DollarStep()
+        let step = try DollarStep(shouldNotify: false)
         let message = step.message(from: try dollarExchange())
 
         let expectedMessage = """

@@ -17,12 +17,13 @@ class TelegramSender: Sender {
         self.bot = TelegramBot(token: token)
     }
 
-    func send(message: String) {
+    func send(message: String, notify: Bool) {
         bot.sendMessageSync(
             chatId: chatId,
             text: message,
             parseMode: .markdown,
-            disableWebPagePreview: true
+            disableWebPagePreview: true,
+            disableNotification: !notify
         )
     }
 }

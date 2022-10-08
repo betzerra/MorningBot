@@ -8,5 +8,5 @@
 import Foundation
 
 protocol Sender {
-    func send(message: String)
+    func send(message: String, notify: Bool)
 }

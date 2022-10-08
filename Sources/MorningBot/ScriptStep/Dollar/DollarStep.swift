@@ -14,14 +14,15 @@ enum DollarStepError: Error {
 
 class DollarStep: ScriptStep {
     let client: Pluma
+    let shouldNotify: Bool
 
-
-    init() throws {
+    init(shouldNotify: Bool) throws {
         guard let url = URL(string: "https://api.bluelytics.com.ar/v2") else {
             throw DollarStepError.wrongHost
         }
 
         client = Pluma(baseURL: url, decoder: DollarStep.decoder())
+        self.shouldNotify = shouldNotify
     }
 
     func message() async throws -> String {
