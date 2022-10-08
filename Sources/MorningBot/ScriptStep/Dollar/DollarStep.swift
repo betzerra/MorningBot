@@ -13,7 +13,7 @@ enum DollarStepError: Error {
 }
 
 class DollarStep: ScriptStep {
-    let client: Pluma
+    let dollarExchangeService: DollarExchangeService
     let shouldNotify: Bool
 
     init(shouldNotify: Bool) throws {
@@ -21,17 +21,12 @@ class DollarStep: ScriptStep {
             throw DollarStepError.wrongHost
         }
 
-        client = Pluma(baseURL: url, decoder: DollarStep.decoder())
+        self.dollarExchangeService = DollarExchangeService(url: url)
         self.shouldNotify = shouldNotify
     }
 
     func message() async throws -> String {
-        let exchange: DollarExchange = try await client.request(
-            method: .GET,
-            path: "latest",
-            params: nil
-        )
-
+        let exchange: DollarExchange = try await dollarExchangeService.fetchDollarExchange()
         return message(from: exchange)
     }
 
@@ -41,32 +36,5 @@ class DollarStep: ScriptStep {
         *Dolar blue:* \(exchange.blue.formattedSell) / \(exchange.blue.formattedBuy) (spr: \(exchange.blue.formattedSpread))
         *Dif. blue / oficial:* \(exchange.formattedSpread)
         """
-    }
-
-    private static func defaultDateFormatter() -> ISO8601DateFormatter {
-        let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        return formatter
-    }
-
-    static func decoder() -> JSONDecoder {
-        let dateFormatter = DollarStep.defaultDateFormatter()
-
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom { decoder in
-            let container = try decoder.singleValueContainer()
-            let dateString = try container.decode(String.self)
-
-            dateFormatter.date(from: dateString)
-            if let date = dateFormatter.date(from: dateString) {
-                return date
-            }
-
-            throw DecodingError.dataCorruptedError(
-                in: container,
-                debugDescription: "Cannot decode date string \(dateString)"
-            )
-        }
-        return decoder
     }
 }

@@ -69,6 +69,6 @@ final class DollarStepTests: XCTestCase {
         """
 
         let data = exchangeJSON.data(using: .utf8)
-        return try DollarStep.decoder().decode(DollarExchange.self, from: data!)
+        return try DollarExchangeService.decoder().decode(DollarExchange.self, from: data!)
     }
 }
