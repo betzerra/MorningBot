@@ -14,23 +14,31 @@ public struct MorningBot {
             let config = try Config.load()
             let senders = config.generateSenders()
 
-            config.generateSteps().forEach { step in
-                Task.init {
-                    do {
-                        let message = try await step.message()
+            let steps = config.generateSteps()
 
-                        senders.forEach { sender in
-                            sender.send(message: message)
-                        }
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                }
+            Task.init {
+                await MorningBot.send(steps: steps, using: senders)
+                exit(EXIT_SUCCESS)
             }
         } catch {
             print(error.localizedDescription)
+            exit(EXIT_FAILURE)
         }
 
         dispatchMain()
+    }
+
+    private static func send(steps: [ScriptStep], using senders: [Sender]) async {
+        for step in steps {
+            do {
+                let message = try await step.message()
+
+                senders.forEach { sender in
+                    sender.send(message: message)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 }

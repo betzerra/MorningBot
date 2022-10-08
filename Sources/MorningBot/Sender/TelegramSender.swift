@@ -18,7 +18,7 @@ class TelegramSender: Sender {
     }
 
     func send(message: String) {
-        bot.sendMessageAsync(
+        bot.sendMessageSync(
             chatId: .chat(chatId),
             text: message,
             parseMode: .markdown,

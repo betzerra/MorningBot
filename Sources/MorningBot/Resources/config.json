@@ -1,6 +1,9 @@
 {
     "script": [
         {
+            "type": "dollar"
+        },
+        {
             "type": "clarinete_news",
             "limit": 5
         }
