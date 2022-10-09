@@ -13,13 +13,9 @@ enum ScriptType: String, Codable {
     case dollar
 }
 
-struct ScriptConfig: Decodable {
-    let value: Value
-
-    enum Value {
-        case clarineteNews(ClarineteStep)
-        case dollar(DollarStep)
-    }
+enum ScriptConfig: Decodable {
+    case clarineteNews(ClarineteStep)
+    case dollar(DollarStep)
 
     enum CodingKeys: String, CodingKey {
         case limit
@@ -36,10 +32,19 @@ struct ScriptConfig: Decodable {
         switch type {
         case .clarineteNews:
             let limit = try container.decode(Int.self, forKey: .limit)
-            value = .clarineteNews(ClarineteStep(limit: limit, shouldNotify: notify))
+            self = .clarineteNews(ClarineteStep(limit: limit, shouldNotify: notify))
 
         case .dollar:
-            value = .dollar(try DollarStep(shouldNotify: notify))
+            self = .dollar(try DollarStep(shouldNotify: notify))
+        }
+    }
+
+    var scriptStep: ScriptStep {
+        switch self {
+        case .clarineteNews(let value):
+            return value
+        case .dollar(let value):
+            return value
         }
     }
 }

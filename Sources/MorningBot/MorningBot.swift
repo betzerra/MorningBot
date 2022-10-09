@@ -12,9 +12,8 @@ public struct MorningBot {
     public static func main() {
         do {
             let config = try Config.load()
-            let senders = config.generateSenders()
-
-            let steps = config.generateSteps()
+            let senders = config.senders.map { $0.sender }
+            let steps = config.script.map { $0.scriptStep }
 
             Task.init {
                 await MorningBot.send(steps: steps, using: senders)
