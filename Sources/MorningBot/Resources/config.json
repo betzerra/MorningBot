@@ -1,8 +1,15 @@
 {
     "script": [
         {
+            "type": "weather",
+            "notify": true,
+            "latitude": -34.586217,
+            "longitude": -58.477769,
+            "openweather_token": "xyz"
+        },
+        {
             "type": "dollar",
-            "notify": true
+            "notify": false
         },
         {
             "type": "clarinete_news",
