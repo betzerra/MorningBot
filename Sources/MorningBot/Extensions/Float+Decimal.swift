@@ -8,11 +8,8 @@
 import Foundation
 
 extension Float {
+    /// - Returns: String with 2 decimals
     var decimal: String {
         String(format: "%.2f", self)
-    }
-
-    var celcius: String {
-        String(format: "%.2fºC", self)
     }
 }

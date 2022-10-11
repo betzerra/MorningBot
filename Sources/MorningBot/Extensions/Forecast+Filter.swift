@@ -9,6 +9,8 @@ import Foundation
 import OpenWeather
 
 extension Forecast {
+    /// - Returns: The moment that temperature is going to be
+    /// at its minimum today
     var todaysMinimum: WeatherEntry? {
         list
             .filter { Calendar.current.isDateInToday($0.date) }
@@ -17,6 +19,8 @@ extension Forecast {
             }
     }
 
+    /// - Returns: The moment that temperature is going to be
+    /// at its maximum today
     var todaysMaximum: WeatherEntry? {
         list
             .filter { Calendar.current.isDateInToday($0.date) }

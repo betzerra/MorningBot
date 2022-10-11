@@ -51,7 +51,7 @@ class WeatherStep: ScriptStep {
             let components: [String] = [
                 "*\(lineDateFormatter.string(from: item.date))*",
                 item.type.emoji,
-                item.temperature.celcius
+                item.temperature.decimal.appending("ºC")
             ]
 
             return components.joined(separator: " ")
