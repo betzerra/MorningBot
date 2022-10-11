@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// Struct to represent exchange values from Bluelytics API
+/// https://github.com/Bluelytics/bluelytics_api
 struct Currency: Codable, Equatable {
     enum CodingKeys: String, CodingKey {
         case average = "value_avg"

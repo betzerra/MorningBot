@@ -15,6 +15,8 @@ enum ScriptType: String, Codable {
     case weather
 }
 
+/// Represents a message that the bot will post to some medium (such as Telegram for example)
+/// - Note: This configuration is parsed from 'config.json' file.
 enum ScriptConfig: Decodable {
     case clarineteNews(ClarineteStep)
     case dollar(DollarStep)

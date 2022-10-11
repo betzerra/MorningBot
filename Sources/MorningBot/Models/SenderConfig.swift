@@ -16,6 +16,8 @@ enum SenderConfigError: Error {
     case missingKeys
 }
 
+/// Represents a medium where the bot will post every message (such as Telegram for example)
+/// - Note: This configuration is parsed from 'config.json' file.
 enum SenderConfig: Decodable {
     case telegram(TelegramSender)
 

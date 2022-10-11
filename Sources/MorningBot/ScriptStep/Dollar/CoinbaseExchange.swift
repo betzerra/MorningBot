@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Struct to represent exchange values from Coinbase
 struct CoinbaseExchange: Codable {
     let high: String
     let low: String
