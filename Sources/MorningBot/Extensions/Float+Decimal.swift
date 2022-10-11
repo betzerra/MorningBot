@@ -11,4 +11,8 @@ extension Float {
     var decimal: String {
         String(format: "%.2f", self)
     }
+
+    var celcius: String {
+        String(format: "%.2fºC", self)
+    }
 }

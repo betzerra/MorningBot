@@ -7,19 +7,25 @@
 
 import Foundation
 import Clarinete
+import OpenWeather
 
 enum ScriptType: String, Codable {
     case clarineteNews = "clarinete_news"
     case dollar
+    case weather
 }
 
 enum ScriptConfig: Decodable {
     case clarineteNews(ClarineteStep)
     case dollar(DollarStep)
+    case weather(WeatherStep)
 
     enum CodingKeys: String, CodingKey {
+        case latitude
+        case longitude
         case limit
         case notify
+        case openweatherToken = "openweather_token"
         case type
     }
 
@@ -36,6 +42,20 @@ enum ScriptConfig: Decodable {
 
         case .dollar:
             self = .dollar(try DollarStep(shouldNotify: notify))
+
+        case .weather:
+            let latitude = try container.decode(Double.self, forKey: .latitude)
+            let longitude = try container.decode(Double.self, forKey: .longitude)
+            let token = try container.decode(String.self, forKey: .openweatherToken)
+
+            let step = WeatherStep(
+                latitude: latitude,
+                longitude: longitude,
+                token: token,
+                shouldNotify: notify
+            )
+
+            self = .weather(step)
         }
     }
 
@@ -44,6 +64,8 @@ enum ScriptConfig: Decodable {
         case .clarineteNews(let value):
             return value
         case .dollar(let value):
+            return value
+        case .weather(let value):
             return value
         }
     }

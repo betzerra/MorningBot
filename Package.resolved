@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "openweather",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:betzerra/OpenWeather.git",
+      "state" : {
+        "revision" : "26ea0f7c48650fcdab0fb2536357a1816e199f10",
+        "version" : "0.2.2"
+      }
+    },
+    {
       "identity" : "pluma",
       "kind" : "remoteSourceControl",
       "location" : "git@github.com:betzerra/Pluma.git",
