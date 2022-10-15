@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "git@github.com:betzerra/OpenWeather.git",
       "state" : {
-        "revision" : "26ea0f7c48650fcdab0fb2536357a1816e199f10",
-        "version" : "0.2.2"
+        "revision" : "5e9b633a1e60ff20f04a11dbbd8f45ea7440de95",
+        "version" : "0.2.3"
       }
     },
     {
