@@ -17,7 +17,7 @@ class WeatherStep: ScriptStep {
 
     private let lineDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "hha"
+        formatter.dateFormat = "hha" // looks like: 09AM, 03PM...
         return formatter
     }()
 
@@ -45,9 +45,7 @@ class WeatherStep: ScriptStep {
     }
 
     private func weatherSummary(from forecast: Forecast) -> String {
-        let lines = forecast.cluster(by: 2)
-            .filter { Calendar.current.isDateInToday($0.date) }
-            .map { item in
+        let lines = nearestForecast(from: forecast).map { item in
             let components: [String] = [
                 "*\(lineDateFormatter.string(from: item.date))*",
                 item.type.emoji,
@@ -58,5 +56,20 @@ class WeatherStep: ScriptStep {
         }
 
         return lines.joined(separator: "\n")
+    }
+
+    /// Returns today's or tomorrow's forecast.
+    /// - NOTE: Returns tomorrow's forecast when requested near midnight
+    private func nearestForecast(from forecast: Forecast) -> [WeatherEntry] {
+        let forecast = forecast.cluster(by: 2)
+        let todayForecast = forecast.filter { Calendar.current.isDateInToday($0.date) }
+
+        // If there's no weather information for today,
+        // then return forecast for tomorrow
+        guard todayForecast.count > 0 else {
+            return forecast.filter { Calendar.current.isDateInTomorrow($0.date) }
+        }
+
+        return todayForecast
     }
 }
