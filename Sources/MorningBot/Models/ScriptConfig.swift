@@ -22,33 +22,43 @@ enum ScriptConfig: Decodable {
     case dollar(DollarStep)
     case weather(WeatherStep)
 
-    enum CodingKeys: String, CodingKey {
-        case latitude
-        case longitude
-        case limit
+    // MARK: - CodingKeys
+    enum CommonCodingKeys: String, CodingKey {
         case notify
-        case openweatherToken = "openweather_token"
         case type
     }
 
+    enum ClarineteCodingKeys: String, CodingKey {
+        case limit
+    }
+
+    enum WeatherCodingKeys: String, CodingKey {
+        case latitude
+        case longitude
+        case openweatherToken = "openweather_token"
+    }
+
+    // MARK: - Init
     init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try decoder.container(keyedBy: CommonCodingKeys.self)
 
         let type = try container.decode(ScriptType.self, forKey: .type)
         let notify = try container.decode(Bool.self, forKey: .notify)
 
         switch type {
         case .clarineteNews:
-            let limit = try container.decode(Int.self, forKey: .limit)
+            let clarineteContainer = try decoder.container(keyedBy: ClarineteCodingKeys.self)
+            let limit = try clarineteContainer.decode(Int.self, forKey: .limit)
             self = .clarineteNews(ClarineteStep(limit: limit, shouldNotify: notify))
 
         case .dollar:
             self = .dollar(try DollarStep(shouldNotify: notify))
 
         case .weather:
-            let latitude = try container.decode(Double.self, forKey: .latitude)
-            let longitude = try container.decode(Double.self, forKey: .longitude)
-            let token = try container.decode(String.self, forKey: .openweatherToken)
+            let weatherContainer = try decoder.container(keyedBy: WeatherCodingKeys.self)
+            let latitude = try weatherContainer.decode(Double.self, forKey: .latitude)
+            let longitude = try weatherContainer.decode(Double.self, forKey: .longitude)
+            let token = try weatherContainer.decode(String.self, forKey: .openweatherToken)
 
             let step = WeatherStep(
                 latitude: latitude,
