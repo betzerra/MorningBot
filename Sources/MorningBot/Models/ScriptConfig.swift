@@ -29,6 +29,7 @@ enum ScriptConfig: Decodable {
     }
 
     enum ClarineteCodingKeys: String, CodingKey {
+        case muteTopics = "mute_topics"
         case limit
     }
 
@@ -49,7 +50,15 @@ enum ScriptConfig: Decodable {
         case .clarineteNews:
             let clarineteContainer = try decoder.container(keyedBy: ClarineteCodingKeys.self)
             let limit = try clarineteContainer.decode(Int.self, forKey: .limit)
-            self = .clarineteNews(ClarineteStep(limit: limit, shouldNotify: notify))
+            let muteTopics = try clarineteContainer.decodeIfPresent([String].self, forKey: .muteTopics) ?? []
+
+            let step = ClarineteStep(
+                muteTopics: muteTopics,
+                limit: limit,
+                shouldNotify: notify
+            )
+            
+            self = .clarineteNews(step)
 
         case .dollar:
             self = .dollar(try DollarStep(shouldNotify: notify))
