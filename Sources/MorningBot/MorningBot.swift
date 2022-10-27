@@ -6,22 +6,29 @@
 //
 
 import Foundation
+import ArgumentParser
 
 @main
-public struct MorningBot {
-    public static func main() {
+struct MorningBot: ParsableCommand  {
+    @Option(
+        name: .shortAndLong,
+        help: "Configuration file to use with MorningBot"
+    )
+    var file: String = "config.json"
+
+    mutating func run() throws {
         do {
-            let config = try Config.load()
+            let config = try Config.load(file: file)
             let senders = config.senders.map { $0.sender }
             let steps = config.script.map { $0.scriptStep }
 
             Task.init {
                 await MorningBot.send(steps: steps, using: senders)
-                exit(EXIT_SUCCESS)
+                Darwin.exit(EXIT_SUCCESS)
             }
         } catch {
             print(error.localizedDescription)
-            exit(EXIT_FAILURE)
+            Darwin.exit(EXIT_FAILURE)
         }
 
         dispatchMain()
