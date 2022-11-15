@@ -13,6 +13,7 @@
         },
         {
             "type": "clarinete_news",
+            "host": "https://clarinetecache.apps.betzerra.dev",
             "limit": 5,
             "mute_topics": ["Messi"],
             "notify": false

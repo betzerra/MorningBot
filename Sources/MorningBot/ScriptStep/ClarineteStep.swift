@@ -13,6 +13,9 @@ enum ClarineteStepError: Error {
 }
 
 class ClarineteStep: ScriptStep {
+    /// Host where the API is
+    let host: URL
+
     /// Ignore trending topics that contain the following words
     let muteTopics: [String]
 
@@ -22,7 +25,8 @@ class ClarineteStep: ScriptStep {
     /// Send a notification sound when posting a message if true
     let shouldNotify: Bool
 
-    init(muteTopics: [String], limit: Int, shouldNotify: Bool) {
+    init(host: URL, muteTopics: [String], limit: Int, shouldNotify: Bool) {
+        self.host = host
         self.muteTopics = muteTopics
         self.limit = limit
         self.shouldNotify = shouldNotify
