@@ -9,7 +9,7 @@ let package = Package(
          .macOS(.v12),
     ],
     dependencies: [
-        .package(url: "git@github.com:betzerra/Clarinete.git", exact: .init(2, 1, 0)),
+        .package(url: "git@github.com:betzerra/Clarinete.git", exact: .init(2, 1, 1)),
         .package(url: "git@github.com:betzerra/OpenWeather.git", exact: .init(0, 2, 3)),
         .package(url: "git@github.com:rapierorg/telegram-bot-swift.git", exact: .init(2, 1, 2)),
         .package(url: "git@github.com:apple/swift-argument-parser.git", exact: .init(1, 1, 4))
