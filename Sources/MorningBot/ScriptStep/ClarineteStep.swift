@@ -36,11 +36,11 @@ class ClarineteStep: ScriptStep {
         var message: String = ""
 
         try await getTrends().forEach { trend in
-            guard let summary = trend.summary else {
+            guard let summary = trend.posts.first else {
                 return
             }
 
-            message += "- *\(trend.name):* \(summary.text) [link](\(summary.url)) \n\n"
+            message += "- *\(trend.name):* \(summary.title) [link](\(summary.url)) \n\n"
         }
         return message
     }

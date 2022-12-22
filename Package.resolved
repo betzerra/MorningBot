@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "git@github.com:betzerra/Clarinete.git",
       "state" : {
-        "revision" : "39c0d4a842f36e7d8228d922551dba3e04e11d8b",
-        "version" : "1.0.0"
+        "revision" : "8c9e3acbb2f95a5d3fe3b1f2e945d7e5106314f8",
+        "version" : "2.1.0"
       }
     },
     {
