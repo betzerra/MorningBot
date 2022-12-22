@@ -42,15 +42,13 @@ class ClarineteStep: ScriptStep {
 
             message += "- *\(trend.name):* \(summary.title) [link](\(summary.url)) \n\n"
         }
+
+        message += "[Más noticias](\(host)) 🗞️"
         return message
     }
 
     func getTrends() async throws -> [Trend] {
-        guard let url = URL(string: "https://clarinete.seppo.com.ar") else {
-            throw ClarineteStepError.wrongHost
-        }
-
-        let configuration = Configuration(host: url)
+        let configuration = Configuration(host: host)
 
         let client = try Clarinete(configuration: configuration)
         let topics = try await client.getTrends()
