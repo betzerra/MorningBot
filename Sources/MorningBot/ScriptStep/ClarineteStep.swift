@@ -40,7 +40,8 @@ class ClarineteStep: ScriptStep {
                 return
             }
 
-            message += "- *\(trend.name):* \(summary.title) [link](\(summary.url)) \n\n"
+            let unpaywallURL = "\(host)/unpaywall/\(summary.url)"
+            message += "- *\(trend.name):* \(summary.title) [link](\(unpaywallURL)) \n\n"
         }
 
         message += "[Más noticias](\(host)) 🗞️"
